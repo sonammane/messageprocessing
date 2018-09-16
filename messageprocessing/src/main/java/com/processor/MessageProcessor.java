@@ -1,29 +1,34 @@
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+package com.processor;
 
-public class MessageProcessing {
+import java.util.*;
+import com.model.SaleRecord;
+import com.handler.ReportGenerator;
+import com.dataprocessor.FileRdr;
 
-	public static void main(String[] args){
-		FileReader reader = new FileReader();
-		List<String> msgList = reader.getMessagesFromFile("../MessageSender.txt");
-		Map<String, SaleRecord> salesMap = new HashMap<String, SaleRecord>();
-	
-		int msgCount = 0; 		
-		int pauseAtTenMsg = 0; 
-							
+public class MessageProcessor {
+
+	List<String> msgList = new ArrayList<>();
+	Map<String, SaleRecord> salesMap = new HashMap<String, SaleRecord>();
+	ReportGenerator reportGenerator = new ReportGenerator();
+	FileRdr reader = new FileRdr();
+	int msgCount = 0; 		
+	int pauseAtTenMsg = 0;
+
+	public void messageProcessing() {
+		msgList = reader.getMessagesFromFile("MessageSender.txt");
+
 		while (msgList.size() != msgCount) {
 			String msg = msgList.get(msgCount);
 			msgCount++;
 			pauseAtTenMsg++;
 			
 			if (pauseAtTenMsg == 10) {							
-				logReportAfterTenMsg(salesMap);
+				reportGenerator.logReportAfterTenMsg(salesMap);
 				pauseAtTenMsg = 0; 			
 			}
 
 			if (msgCount == 50) {
-				logReportAfterFiftyMsg(salesMap);
+				reportGenerator.logReportAfterFiftyMsg(salesMap);
 				System.exit(0);
 			}
       
@@ -45,7 +50,7 @@ public class MessageProcessing {
 				}
 			} else if ("Multiply".equalsIgnoreCase(msgArr[0])) {				
 				int cost = Integer.parseInt(msgArr[1].substring(0,msgArr[1].length() - 1));
-        SaleRecord sale = salesMap.get(msgArr[2].toUpperCase());
+        		SaleRecord sale = salesMap.get(msgArr[2].toUpperCase());
 				if (sale != null) {
 					sale.setTotalValue(sale.getTotalValue() * sale.getTotalCount() * cost);
 					sale.getAdjustmentsList().add(msgArr[0]+" "+msgArr[1]);	
@@ -57,8 +62,8 @@ public class MessageProcessing {
 						count = Integer.parseInt(msgArr[0]);	
 						String name = msgArr[3].toUpperCase();
 						int cost = Integer.parseInt(msgArr[5].substring(0,msgArr[5].length() - 1));
-            SaleRecord sale = salesMap.get(name);
-            if (sale != null) {
+            			SaleRecord sale = salesMap.get(name);
+            			if (sale != null) {
 							sale.setTotalCount(sale.getTotalCount() + count);
 							sale.setTotalValue(sale.getTotalValue() + count * cost);
 						} else {
@@ -73,37 +78,11 @@ public class MessageProcessing {
 							sale.setTotalCount(sale.getTotalCount() + 1);
 							sale.setTotalValue(sale.getTotalValue() + cost);
 						} else {
-							sale = new Sale(1, cost);
+							sale = new SaleRecord(1, cost);
 							salesMap.put(name + "S", sale);
 						}
 					}			
 			}			
-		}
-	}
-
-	public void logReportAfterTenMsg(Map<String, SaleRecord> salesMap) {
-		System.out.println("***Report after every 10th message***");
-    for (Entry<String, SaleRecord> entry : salesMap.entrySet()) {
-			System.out.println("Number of sales for "+entry.getKey()+" is " +entry.getValue().getTotalCount()+ 
-          " and its total value is "+entry.getValue().getTotalValue());
-			System.out.println("-----*****-----");
-		}	
-	}
-
-	public void logReportAfterFiftyMsg(Map<String, SaleRecord> salesMap) {
-    System.out.println("Cannot accept new message.Threshold of 50 messages is reached.Application is paused.");
-		System.out.println("***Report after every 50th message***");
-    for (Entry<String, SaleRecord> entry : salesMap.entrySet()) {
-			System.out.println("Adjustments made to each sale of" + entry.getKey());
-			if(entry.getValue().getAdjustmentsList().size>0){
-				for(String adjustments :entry.getValue().getAdjustmentsList()){
-					System.out.println(adjustments);
-				}
-			}
-			System.out.println("----------");
-			System.out.println(entry.getKey()+"total sales count: "+ entry.getValue().getTotalCount());
-			System.out.println(entry.getKey()+"total sales value: "+ entry.getValue().getTotalValue());
-			System.out.println("-----*****-----");
 		}
 	}	
 }

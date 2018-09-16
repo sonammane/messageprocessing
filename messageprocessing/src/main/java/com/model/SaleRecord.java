@@ -1,4 +1,6 @@
-import java.util.List;
+package com.model;
+import java.util.*;
+import java.io.*;
 
 public class SaleRecord implements Serializable {
 	
