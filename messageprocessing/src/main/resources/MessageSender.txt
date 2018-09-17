@@ -1,9 +1,9 @@
 apple at 10p
-20 sales of apples at 10p each
-Add 20p apples 
-20 sales of bananas at 10p each
+20 sales of apple at 10p each
+Add 20p apple
+20 sales of banana at 10p each
 banana at 10p
-Add 20p bananas
+Add 20p banana
 apple at 10p
 apple at 10p
 apple at 10p
@@ -12,3 +12,41 @@ apple at 10p
 apple at 10p
 apple at 10p
 apple at 10p
+Add 20p banana
+Add 20p banana
+apple at 10p
+20 sales of apple at 10p each
+subtract 20p apple
+20 sales of banana at 10p each
+banana at 10p
+Add 20p banana
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+subtract 20p banana
+Add 20p banana
+apple at 10p
+20 sales of apple at 10p each
+Add 20p apple
+20 sales of banana at 10p each
+banana at 10p
+subtract 20p banana
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+apple at 10p
+Add 20p banana
+Add 20p banana
+apple at 10p
+apple at 10p
+Add 20p banana
+Add 20p banana

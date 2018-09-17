@@ -1,4 +1,4 @@
-package com.dataprocessor;
+package com.readmessages;
 
 import java.io.*;
 import java.util.*;
@@ -9,9 +9,7 @@ public class FileRdr {
 		List<String> msgList = new ArrayList<String>();
 		try {
 			BufferedReader br = new BufferedReader(new FileReader(fileName));
-			StringBuilder sb = new StringBuilder();
 			String line = br.readLine();
-
 			while (line != null) {
 				msgList.add(line);
 				line = br.readLine();
@@ -19,7 +17,7 @@ public class FileRdr {
 			br.close();
 		} 
 		catch(Exception e){
-			System.out.println(e.getMessage());
+			System.out.println("No new message to process.");
 		}
 		finally {
 			return msgList;
