@@ -1,0 +1,11 @@
+apple at 10p
+20 sales of apple at 10p each
+Add 20p apple
+20 sales of banana at 10p each
+banana at 10p
+Add 20p banana
+apple at 10p
+apple at 10p
+Subtract 20p banana
+Multiply 20p banana
+apple at 10p

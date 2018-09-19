@@ -40,13 +40,12 @@ apple at 10p
 apple at 10p
 apple at 10p
 apple at 10p
-apple at 10p
-apple at 10p
-apple at 10p
-apple at 10p
 Add 20p banana
 Add 20p banana
 apple at 10p
 apple at 10p
 Add 20p banana
 Add 20p banana
+Subtract 20p banana
+Multiply 20p banana
+apple at 10p
